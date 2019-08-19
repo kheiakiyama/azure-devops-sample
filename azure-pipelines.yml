@@ -1,0 +1,21 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  dockerRegistryServiceConnection: azure-acr-connection
+
+steps:
+- task: Docker@2
+  displayName: Build and push a frontend image to container registry
+  inputs:
+    command: buildAndPush
+    repository: $(frontendImageRepository)
+    containerRegistry: $(dockerRegistryServiceConnection)
+    Dockerfile: DockerfileNode
+    tags: |
+      $(Build.BuildId)
+      latest
+
