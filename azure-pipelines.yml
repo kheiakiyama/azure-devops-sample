@@ -12,9 +12,9 @@ steps:
   displayName: Build and push a frontend image to container registry
   inputs:
     command: buildAndPush
-    repository: $(frontendImageRepository)
+    repository: azure-devops-sample
     containerRegistry: $(dockerRegistryServiceConnection)
-    Dockerfile: DockerfileNode
+    Dockerfile: Dockerfile
     tags: |
       $(Build.BuildId)
       latest
